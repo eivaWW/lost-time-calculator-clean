@@ -8,7 +8,7 @@
   :root { color-scheme: light; }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Helvetica Neue',Arial,sans-serif; background:#F4F7FF; color:#0E1A2B;
-         padding:34px 20px 48px; line-height:1.5; }
+         padding:36px 20px 52px; line-height:1.55; }
   .wrap { max-width:720px; margin:0 auto; }
   .top { display:flex; justify-content:space-between; align-items:center; gap:16px; }
   .brand { font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#2D5BFF; font-weight:800; }
@@ -16,59 +16,65 @@
   .lang button { border:1px solid #cdd9ee; background:#fff; color:#2a3a50; font-weight:700;
     border-radius:8px; padding:5px 11px; cursor:pointer; font-size:13px; }
   .lang button.active { background:#2D5BFF; color:#fff; border-color:#2D5BFF; }
-  h1 { font-size:26px; font-weight:800; letter-spacing:-.01em; margin-top:14px; max-width:600px; }
+  h1 { font-size:27px; font-weight:800; letter-spacing:-.01em; margin-top:16px; max-width:620px; line-height:1.2; }
   /* inputs */
-  .inputs { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px; }
-  .field label { display:block; font-size:12.5px; font-weight:700; color:#5a6b84; margin-bottom:6px; }
-  .field .hint { font-weight:400; color:#9aa7bd; }
-  input[type=number] { width:100%; font-size:19px; font-weight:700; color:#0E1A2B; padding:10px 12px;
+  .inputs { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:26px; }
+  .field label { display:block; font-size:13px; font-weight:700; color:#5a6b84; margin-bottom:8px; }
+  .field .hint { display:block; font-weight:400; font-size:11.5px; color:#9aa7bd; margin-top:2px; }
+  input[type=number] { width:100%; font-size:19px; font-weight:700; color:#0E1A2B; padding:11px 12px;
     border:1px solid #cdd9ee; border-radius:10px; background:#fff; }
-  .seg { display:flex; gap:5px; margin-top:0; }
+  .seg { display:flex; gap:6px; }
   .seg button { flex:1; border:1px solid #cdd9ee; background:#fff; color:#2a3a50; font-weight:700;
-    padding:9px 4px; border-radius:9px; cursor:pointer; font-size:13px; }
+    padding:10px 5px; border-radius:10px; cursor:pointer; font-size:13px; line-height:1.25; }
+  .seg button small { display:block; font-weight:500; font-size:10.5px; color:#8a97ac; margin-top:2px; }
   .seg button.active { background:#2D5BFF; color:#fff; border-color:#2D5BFF; }
+  .seg button.active small { color:#cfe0ff; }
   .full { grid-column:1 / -1; }
   /* headline numbers */
-  .nums { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px; }
-  .num { border-radius:16px; padding:22px 24px; }
+  .nums { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:26px; }
+  .num { border-radius:16px; padding:24px 24px; }
   .num.a { background:#fff; border:1px solid #e2e9f6; }
   .num.b { background:#2D5BFF; color:#fff; }
-  .num .k { font-size:12.5px; font-weight:700; color:#5a6b84; }
+  .num .k { font-size:12.5px; font-weight:700; color:#5a6b84; line-height:1.35; }
   .num.b .k { color:#cfe0ff; }
-  .num .v { font-size:46px; font-weight:800; letter-spacing:-.02em; line-height:1; margin-top:8px; color:#0E1A2B; }
+  .num .v { font-size:46px; font-weight:800; letter-spacing:-.02em; line-height:1; margin-top:12px; color:#E5484D; }
   .num.b .v { color:#fff; }
-  .num .s { font-size:12px; color:#8a97ac; margin-top:8px; }
+  .num .s { font-size:12px; color:#8a97ac; margin-top:12px; }
   .num.b .s { color:#dbe6ff; }
   /* explanation wall */
-  details { background:#fff; border:1px solid #e2e9f6; border-radius:12px; margin-top:10px; }
-  summary { cursor:pointer; list-style:none; padding:15px 18px; font-weight:700; font-size:14px;
-    color:#0E1A2B; display:flex; justify-content:space-between; align-items:center; }
+  .wall { margin-top:26px; }
+  details { background:#fff; border:1px solid #e2e9f6; border-radius:12px; margin-top:12px; }
+  summary { cursor:pointer; list-style:none; padding:17px 20px; font-weight:700; font-size:14.5px;
+    color:#0E1A2B; display:flex; justify-content:space-between; align-items:center; gap:14px; }
   summary::-webkit-details-marker { display:none; }
-  summary::after { content:"+"; color:#2D5BFF; font-size:20px; font-weight:800; line-height:1; }
+  summary::after { content:"+"; color:#2D5BFF; font-size:22px; font-weight:800; line-height:1; flex:0 0 auto; }
   details[open] summary::after { content:"\2013"; }
-  .dbody { padding:2px 18px 20px; font-size:13.5px; color:#3d4d63; }
-  .dbody .line { margin-top:8px; } .dbody .line b { color:#0E1A2B; }
+  .dbody { padding:4px 20px 22px; font-size:13.5px; color:#3d4d63; line-height:1.65; }
+  .dbody .line { margin-top:11px; } .dbody .line b { color:#0E1A2B; }
   /* week */
-  .weekbar { display:flex; gap:5px; height:30px; margin-top:6px; }
+  .weekbar { display:flex; gap:6px; height:32px; margin-top:6px; }
   .weekbar span { flex:1; background:#eef1f7; border-radius:6px; }
-  .wbig { font-size:16px; font-weight:800; color:#0E1A2B; margin-top:12px; } .wbig b { color:#E5484D; }
-  .wwin { font-size:13px; font-weight:700; color:#1E7a4f; margin-top:6px; }
+  .wbig { font-size:17px; font-weight:800; color:#0E1A2B; margin-top:16px; } .wbig b { color:#E5484D; }
+  .wwin { font-size:13.5px; font-weight:700; color:#1E7a4f; margin-top:10px; }
+  .legend { display:flex; gap:20px; flex-wrap:wrap; margin-top:14px; font-size:12.5px; color:#5a6b84; }
+  .legend i { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:middle; margin-right:6px; }
+  .legend .red { background:#E5484D; } .legend .green { background:#1E9E6A; }
   /* process */
-  .pstats { display:grid; grid-template-columns:repeat(3,1fr); margin-top:6px; text-align:center; }
-  .pstats > div { padding:0 8px; } .pstats > div + div { border-left:1px solid #eef1f7; }
-  .pstats b { display:block; font-size:26px; font-weight:800; color:#2D5BFF; line-height:1; }
-  .pstats em { display:block; font-style:normal; font-size:11.5px; color:#5a6b84; margin-top:6px; }
-  .procvis { display:flex; justify-content:center; margin-top:12px; }
-  .fact { background:#EEF3FF; border:1px solid #d7e0f2; border-radius:10px; padding:11px 14px; margin-top:12px;
-    font-size:13px; font-weight:700; color:#2a3a50; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
-  .fact a { font-size:11.5px; color:#2D5BFF; text-decoration:none; white-space:nowrap; }
+  .pstats { display:grid; grid-template-columns:repeat(3,1fr); margin-top:8px; text-align:center; }
+  .pstats > div { padding:0 10px; } .pstats > div + div { border-left:1px solid #eef1f7; }
+  .pstats b { display:block; font-size:28px; font-weight:800; color:#2D5BFF; line-height:1; }
+  .pstats em { display:block; font-style:normal; font-size:11.5px; color:#5a6b84; margin-top:8px; }
+  .pnote { font-size:12px; color:#8a97ac; margin-top:16px; }
+  .fact { background:#EEF3FF; border:1px solid #d7e0f2; border-radius:10px; padding:12px 15px; margin-top:16px;
+    font-size:13.5px; font-weight:700; color:#2a3a50; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .fact a { font-size:11.5px; color:#2D5BFF; text-decoration:none; white-space:nowrap; font-weight:700; }
   /* table */
-  .ba { width:100%; border-collapse:collapse; margin-top:4px; }
-  .ba td { padding:8px 8px; font-size:13px; vertical-align:top; border-top:1px solid #eef1f7; }
+  .ba { width:100%; border-collapse:collapse; margin-top:6px; }
+  .ba td { padding:10px 10px; font-size:13px; vertical-align:top; border-top:1px solid #eef1f7; line-height:1.45; }
   .ba td.before { color:#6b7a90; width:47%; } .ba td.after { color:#14663f; }
   .ba td.after::before { content:"\2713  "; color:#1E9E6A; font-weight:800; }
-  .src { font-size:12px; color:#8a97ac; line-height:1.7; } .src a { color:#2D5BFF; font-weight:700; text-decoration:none; }
-  .foot { font-size:11.5px; color:#9aa7bd; margin-top:18px; }
+  .src a { color:#2D5BFF; font-weight:700; text-decoration:none; }
+  .foot { font-size:11.5px; color:#9aa7bd; margin-top:22px; }
   @media (max-width:560px){ .inputs,.nums{grid-template-columns:1fr;} .num .v{font-size:38px;} }
 </style>
 </head>
@@ -81,30 +87,30 @@
       <button id="btEn" onclick="setLang('en')">EN</button>
     </div>
   </div>
-  <h1 data-et="Mida kaotatud aeg teie ettevõttes maksab?" data-en="What does lost time cost your company?">Mida kaotatud aeg teie ettevõttes maksab?</h1>
+  <h1 data-et="Kulu, mis jääb tihti nähtamatuks, kuna puudutab protsesse." data-en="A cost that often stays invisible — because it's about processes.">Kulu, mis jääb tihti nähtamatuks, kuna puudutab protsesse.</h1>
 
   <!-- INPUTS -->
   <div class="inputs">
     <div class="field">
-      <label data-et="Töötajate arv" data-en="Employees">Töötajate arv</label>
+      <label data-et="Töötajate arv" data-en="Number of employees">Töötajate arv</label>
       <input type="number" id="emp" value="400" min="1" step="1">
     </div>
     <div class="field">
-      <label><span data-et="Keskmine brutopalk / kuus" data-en="Avg gross salary / month">Keskmine brutopalk / kuus</span> <span class="hint" data-et="(+ tööandja maksud ~34%)" data-en="(+ employer taxes ~34%)">(+ tööandja maksud ~34%)</span></label>
+      <label><span data-et="Keskmine brutopalk kuus (€)" data-en="Average gross monthly salary (€)">Keskmine brutopalk kuus (€)</span><span class="hint" data-et="Tööandja maksud (~34%, Eesti) liidetakse automaatselt." data-en="Employer taxes (~34%, Estonia) are added automatically.">+ tööandja maksud (~34%)</span></label>
       <input type="number" id="gross" value="2600" min="0" step="50">
     </div>
     <div class="field full">
-      <label data-et="Info otsimisele kuluv aeg (uuringud: 20–30%)" data-en="Time spent searching (research: 20–30%)">Info otsimisele kuluv aeg (uuringud: 20–30%)</label>
+      <label><span data-et="Info otsimisele kuluv aeg" data-en="Time spent searching for information">Info otsimisele kuluv aeg</span><span class="hint" data-et="Uuringute põhjal: McKinsey ~20%, IDC/Forrester ~30%" data-en="Based on research: McKinsey ~20%, IDC/Forrester ~30%">Uuringute põhjal: McKinsey ~20%, IDC/Forrester ~30%</span></label>
       <div class="seg" id="segSearch">
         <button data-val="20" class="active">20%</button><button data-val="25">25%</button><button data-val="30">30%</button>
       </div>
     </div>
     <div class="field full">
-      <label data-et="Webware'iga tagasi võidetav (eeldus)" data-en="Reclaimable with Webware (assumption)">Webware'iga tagasi võidetav (eeldus)</label>
+      <label><span data-et="Eeldatav võit parematest protsessidest Webware'iga." data-en="Expected gain from better processes with Webware.">Eeldatav võit parematest protsessidest Webware'iga.</span><span class="hint" data-et="Eeldus meie tänaste klientide põhjal. Lõpliku numbri saame pilootprojektis." data-en="An assumption based on our current clients. The final number comes from a pilot.">Eeldus meie tänaste klientide põhjal. Lõpliku numbri saame pilootprojektis.</span></label>
       <div class="seg" id="segRecover">
-        <button data-val="5" class="active" data-et="Konservatiivne" data-en="Conservative">Konservatiivne</button>
-        <button data-val="15" data-et="Keskmine" data-en="Average">Keskmine</button>
-        <button data-val="30" data-et="Optimistlik" data-en="Optimistic">Optimistlik</button>
+        <button data-val="5" class="active" data-et="Konservatiivne<small>5% otsimisajast</small>" data-en="Conservative<small>5% of search time</small>">Konservatiivne<small>5% otsimisajast</small></button>
+        <button data-val="15" data-et="Keskmine<small>15%</small>" data-en="Average<small>15%</small>">Keskmine<small>15%</small></button>
+        <button data-val="30" data-et="Optimistlik<small>30%</small>" data-en="Optimistic<small>30%</small>">Optimistlik<small>30%</small></button>
       </div>
     </div>
   </div>
@@ -112,96 +118,80 @@
   <!-- HEADLINE NUMBERS -->
   <div class="nums">
     <div class="num a">
-      <div class="k" data-et="Tänane kulu / aastas" data-en="Today's cost / year">Tänane kulu / aastas</div>
+      <div class="k" data-et="Tänane rahaline ja ajaline kulu info otsimisele" data-en="Today's money and time spent searching for information">Tänane rahaline ja ajaline kulu info otsimisele</div>
       <div class="v" id="oLost">–</div>
       <div class="s" id="oLostSub"></div>
     </div>
     <div class="num b">
-      <div class="k" data-et="Rahaline võit / aastas" data-en="Money gain / year">Rahaline võit / aastas</div>
+      <div class="k" data-et="Rahaline võit infohalduse protsesside parendusest" data-en="The money gain from improving information-management processes">Rahaline võit infohalduse protsesside parendusest</div>
       <div class="v" id="oWin">–</div>
       <div class="s" id="oWinSub"></div>
     </div>
   </div>
 
   <!-- EXPLANATION WALL -->
-  <details>
-    <summary data-et="Kuidas need numbrid tekivad" data-en="How these numbers are built">Kuidas need numbrid tekivad</summary>
-    <div class="dbody">
-      <div class="line" data-et="<b>Aastane tööjõukulu</b> = töötajate arv × keskmine brutopalk × 12 × 1,34 (koos tööandja maksudega)" data-en="<b>Annual labour cost</b> = employees × average gross salary × 12 × 1.34 (incl. employer taxes)"></div>
-      <div class="line" data-et="<b>Tänane kulu</b> = tööjõukulu × otsimise osakaal" data-en="<b>Today's cost</b> = labour cost × the search share"></div>
-      <div class="line" data-et="<b>Rahaline võit</b> = tänane kulu × parenduse osakaal" data-en="<b>Money gain</b> = today's cost × the improvement share"></div>
-    </div>
-  </details>
-
-  <details>
-    <summary data-et="Töönädal — kui palju aega kaob" data-en="The working week — how much time is lost">Töönädal — kui palju aega kaob</summary>
-    <div class="dbody">
-      <div class="weekbar" id="weekBar"><span></span><span></span><span></span><span></span><span></span></div>
-      <div class="wbig" id="weekBig"></div>
-      <div class="wwin" id="weekWinLine"></div>
-    </div>
-  </details>
-
-  <details>
-    <summary data-et="1 dokument, ca 8 protsessipunkti" data-en="1 document, ~8 process points">1 dokument, ca 8 protsessipunkti</summary>
-    <div class="dbody">
-      <div class="pstats">
-        <div><b id="pDocs">–</b><em data-et="dokumenti kuus" data-en="documents / month">dokumenti kuus</em></div>
-        <div><b>≈ 8</b><em data-et="protsessipunkti dokumendi kohta" data-en="process points per document">protsessipunkti dokumendi kohta</em></div>
-        <div><b id="pHand">–</b><em data-et="koostoimivat protsessipunkti kuus" data-en="interconnected process points / month">koostoimivat protsessipunkti kuus</em></div>
+  <div class="wall">
+    <details>
+      <summary data-et="Teeme visuaalseks: vaatame töönädalat." data-en="Let's make it visual: look at the working week.">Teeme visuaalseks: vaatame töönädalat.</summary>
+      <div class="dbody">
+        <div class="weekbar" id="weekBar"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="wbig" id="weekBig"></div>
+        <div class="wwin" id="weekWinLine"></div>
+        <div class="legend">
+          <span><i class="red"></i><span data-et="Ebaefektiivsetele protsessidele kuluv aeg" data-en="Time lost to inefficient processes">Ebaefektiivsetele protsessidele kuluv aeg</span></span>
+          <span><i class="green"></i><span data-et="Webware'iga tagasi võidetav aeg" data-en="Time reclaimable with Webware">Webware'iga tagasi võidetav aeg</span></span>
+        </div>
       </div>
-      <div class="procvis">
-        <svg viewBox="0 0 480 250" width="100%" style="max-width:440px" role="img" aria-label="one document, many roles">
-          <g stroke="#cdd9ee" stroke-width="2">
-            <line x1="230" y1="120" x2="230" y2="54"/><line x1="230" y1="120" x2="282" y2="79"/><line x1="230" y1="120" x2="294" y2="135"/>
-            <line x1="230" y1="120" x2="259" y2="180"/><line x1="230" y1="120" x2="201" y2="180"/><line x1="230" y1="120" x2="166" y2="135"/><line x1="230" y1="120" x2="178" y2="79"/>
-          </g>
-          <g fill="#2D5BFF">
-            <circle cx="230" cy="54" r="5"/><circle cx="282" cy="79" r="5"/><circle cx="294" cy="135" r="5"/>
-            <circle cx="259" cy="180" r="5"/><circle cx="201" cy="180" r="5"/><circle cx="166" cy="135" r="5"/><circle cx="178" cy="79" r="5"/>
-          </g>
-          <g font-size="12.5" font-weight="700" fill="#2a3a50">
-            <text x="230" y="40" text-anchor="middle" data-et="Autor" data-en="Author">Autor</text>
-            <text x="292" y="83" text-anchor="start" data-et="Kinnitaja" data-en="Approver">Kinnitaja</text>
-            <text x="305" y="139" text-anchor="start" data-et="Rahandus" data-en="Finance">Rahandus</text>
-            <text x="270" y="197" text-anchor="start" data-et="Väline partner" data-en="External partner">Väline partner</text>
-            <text x="190" y="197" text-anchor="end" data-et="Audiitor" data-en="Auditor">Audiitor</text>
-            <text x="155" y="139" text-anchor="end" data-et="Reeglid" data-en="Rules">Reeglid</text>
-            <text x="168" y="83" text-anchor="end" data-et="Allkirjastaja" data-en="Signer">Allkirjastaja</text>
-          </g>
-          <circle cx="230" cy="120" r="30" fill="#2D5BFF"/>
-          <rect x="220" y="106" width="20" height="27" rx="3" fill="#fff"/>
-          <rect x="224" y="112" width="12" height="2.2" fill="#c7d4ec"/><rect x="224" y="117" width="12" height="2.2" fill="#c7d4ec"/><rect x="224" y="122" width="9" height="2.2" fill="#c7d4ec"/>
-        </svg>
-      </div>
-      <div class="fact">
-        <span data-et="Üle 80% töötajatest loob dokumendi pigem uuesti, kui otsib olemasolevat." data-en="Over 80% of employees recreate a document rather than search for the existing one.">Üle 80% töötajatest loob dokumendi pigem uuesti, kui otsib olemasolevat.</span>
-        <a href="https://www.armstrongarchives.com/records-management-statistics/" target="_blank" rel="noopener" data-et="allikas ↗" data-en="source ↗">allikas ↗</a>
-      </div>
-    </div>
-  </details>
+    </details>
 
-  <details>
-    <summary data-et="Mida kulunumber ei näita" data-en="What the cost number doesn't show">Mida kulunumber ei näita</summary>
-    <div class="dbody">
-      <table class="ba"><tbody>
-        <tr><td class="before" data-et="Administratiivne stress" data-en="Administrative stress">Administratiivne stress</td><td class="after" data-et="Üks tõde, alati leitav" data-en="One source of truth, always findable">Üks tõde, alati leitav</td></tr>
-        <tr><td class="before" data-et="Tegemata jäänud töö" data-en="Real work left undone">Tegemata jäänud töö</td><td class="after" data-et="Aeg läheb otsustele, mitte otsimisele" data-en="Time goes to decisions, not searching">Aeg läheb otsustele, mitte otsimisele</td></tr>
-        <tr><td class="before" data-et="Vastavus- ja auditirisk" data-en="Compliance &amp; audit risk">Vastavus- ja auditirisk</td><td class="after" data-et="Auditiks valmis sekunditega" data-en="Audit-ready in seconds">Auditiks valmis sekunditega</td></tr>
-        <tr><td class="before" data-et="Andmelekked" data-en="Data leaks">Andmelekked</td><td class="after" data-et="Ligipääs rolli järgi" data-en="Role-based access">Ligipääs rolli järgi</td></tr>
-        <tr><td class="before" data-et="Vale dokumendiversioon" data-en="Wrong document version">Vale dokumendiversioon</td><td class="after" data-et="Alati üks kehtiv versioon" data-en="Always one valid version">Alati üks kehtiv versioon</td></tr>
-      </tbody></table>
-    </div>
-  </details>
+    <details>
+      <summary data-et="1 dokument, ca 8 protsessipunkti" data-en="1 document, ~8 process points">1 dokument, ca 8 protsessipunkti</summary>
+      <div class="dbody">
+        <div class="pstats">
+          <div><b id="pDocs">–</b><em data-et="dokumenti kuus" data-en="documents / month">dokumenti kuus</em></div>
+          <div><b>≈ 8</b><em data-et="protsessipunkti dokumendi kohta" data-en="process points per document">protsessipunkti dokumendi kohta</em></div>
+          <div><b id="pHand">–</b><em data-et="koostoimivat protsessipunkti kuus" data-en="interconnected process points / month">koostoimivat protsessipunkti kuus</em></div>
+        </div>
+        <div class="pnote" data-et="Eeldus: ~1,5 dokumenti töötaja kohta kuus, igaüks ~8 puudutust. Muuda oma numbriga." data-en="Assumption: ~1.5 documents per employee per month, each ~8 touches. Adjust for your reality.">Eeldus: ~1,5 dokumenti töötaja kohta kuus, igaüks ~8 puudutust. Muuda oma numbriga.</div>
+        <div class="fact">
+          <span data-et="Üle 80% töötajatest loob dokumendi pigem uuesti, kui otsib olemasolevat." data-en="Over 80% of employees recreate a document rather than search for the existing one.">Üle 80% töötajatest loob dokumendi pigem uuesti, kui otsib olemasolevat.</span>
+          <a href="https://www.armstrongarchives.com/records-management-statistics/" target="_blank" rel="noopener" data-et="allikas ↗" data-en="source ↗">allikas ↗</a>
+        </div>
+      </div>
+    </details>
 
-  <details>
-    <summary data-et="Allikad ja eeldused" data-en="Sources & assumptions">Allikad ja eeldused</summary>
-    <div class="dbody src">
-      <span data-et="Otsimisaeg 20–30%: McKinsey, IDC, Forrester. Dokumendieeldus: ~1,5 dokumenti töötaja kohta kuus, ~8 protsessipunkti. Numbrid on suunanäitajad — kontrolli oma andmetega." data-en="Search time 20–30%: McKinsey, IDC, Forrester. Document assumption: ~1.5 documents per employee per month, ~8 process points. Figures are directional — verify with your own data."></span><br>
-      <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy" target="_blank" rel="noopener">McKinsey ↗</a> ·
-      <a href="https://www.cdpinstitute.org/news/knowledge-workers-lose-30-of-time-looking-for-data-forrester-study/" target="_blank" rel="noopener">Forrester ↗</a>
-    </div>
-  </details>
+    <details>
+      <summary data-et="Kehva infohalduse probleemid, mida kulunumber samuti kohe ei näita, kuid hea süsteem aitab lahendada." data-en="Problems of poor information management the cost number doesn't immediately show either — but a good system solves.">Kehva infohalduse probleemid, mida kulunumber samuti kohe ei näita, kuid hea süsteem aitab lahendada.</summary>
+      <div class="dbody">
+        <table class="ba"><tbody>
+          <tr><td class="before" data-et="Administratiivne stress" data-en="Administrative stress">Administratiivne stress</td><td class="after" data-et="Üks tõde, alati leitav — „kus see on?" kaob ära" data-en="One source of truth, always findable — “where is it?” disappears">Üks tõde, alati leitav — „kus see on?" kaob ära</td></tr>
+          <tr><td class="before" data-et="Mõttetu töö asemel tegemata jäänud töö" data-en="Real work left undone because of busywork">Mõttetu töö asemel tegemata jäänud töö</td><td class="after" data-et="Aeg läheb otsustele, mitte otsimisele" data-en="Time goes to decisions, not searching">Aeg läheb otsustele, mitte otsimisele</td></tr>
+          <tr><td class="before" data-et="Vastavus- ja auditirisk" data-en="Compliance &amp; audit risk">Vastavus- ja auditirisk</td><td class="after" data-et="Auditiks valmis sekunditega, mitte nädalatega" data-en="Audit-ready in seconds, not weeks">Auditiks valmis sekunditega, mitte nädalatega</td></tr>
+          <tr><td class="before" data-et="Andmelekked — tundlik info vales kohas" data-en="Data leaks — sensitive info in the wrong place">Andmelekked — tundlik info vales kohas</td><td class="after" data-et="Ligipääs rolli järgi — tundlik info ei rända välja" data-en="Role-based access — sensitive info doesn't wander off">Ligipääs rolli järgi — tundlik info ei rända välja</td></tr>
+          <tr><td class="before" data-et="Otsused vale dokumendiversiooni põhjal" data-en="Decisions based on the wrong document version">Otsused vale dokumendiversiooni põhjal</td><td class="after" data-et="Alati üks kehtiv versioon, tervikliku ajalooga" data-en="Always one valid version, with full history">Alati üks kehtiv versioon, tervikliku ajalooga</td></tr>
+        </tbody></table>
+      </div>
+    </details>
+
+    <details>
+      <summary data-et="Kuidas need numbrid tekivad" data-en="How these numbers are built">Kuidas need numbrid tekivad</summary>
+      <div class="dbody">
+        <div class="line" data-et="<b>Aastane tööjõukulu</b> = töötajate arv × keskmine brutopalk × 12 × 1,34 (koos tööandja maksudega)" data-en="<b>Annual labour cost</b> = employees × average gross salary × 12 × 1.34 (incl. employer taxes)"></div>
+        <div class="line" data-et="<b>Info otsimisele kuluv aeg</b> = 40 h nädalas × otsimise osakaal" data-en="<b>Search time</b> = 40 h/week × the search share"></div>
+        <div class="line" data-et="<b>Tänane kulu</b> = aastane tööjõukulu × otsimise osakaal" data-en="<b>Today's cost</b> = annual labour cost × the search share"></div>
+        <div class="line" data-et="<b>Rahaline võit</b> = tänane kulu × parenduse osakaal" data-en="<b>Money gain</b> = today's cost × the improvement share"></div>
+      </div>
+    </details>
+
+    <details>
+      <summary data-et="Allikad ja eeldused" data-en="Sources &amp; assumptions">Allikad ja eeldused</summary>
+      <div class="dbody src">
+        <span data-et="Otsimisaeg 20–30%: McKinsey, IDC, Forrester. Numbrid on suunanäitajad, mitte teie ettevõtte mõõdetud tulemus — kontrolli oma andmetega." data-en="Search time 20–30%: McKinsey, IDC, Forrester. Figures are directional, not your company's measured result — verify with your own data."></span><br>
+        <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy" target="_blank" rel="noopener">McKinsey (2012) ↗</a> ·
+        <a href="https://www.cdpinstitute.org/news/knowledge-workers-lose-30-of-time-looking-for-data-forrester-study/" target="_blank" rel="noopener">Forrester ↗</a>
+      </div>
+    </details>
+  </div>
 
   <p class="foot" data-et="Näidisarvutus — tagasivõidetav osa on eeldus, mille tegelik suurus selgub pilootprojektis." data-en="Illustrative model — the reclaimable share is an assumption; its real size is confirmed by a pilot.">Näidisarvutus — tagasivõidetav osa on eeldus, mille tegelik suurus selgub pilootprojektis.</p>
 </div>
@@ -215,18 +205,18 @@
 
   function calc(){
     var emp=num('emp'), gross=num('gross');
-    var labor=emp*gross*12*MULT, lost=labor*search/100, win=lost*recover/100;
+    var labor=emp*gross*12*MULT, lost=labor*search/100, win=lost*recover/100, hoursWeek=40*search/100;
     document.getElementById('oLost').textContent = eur(lost);
     document.getElementById('oWin').textContent  = eur(win);
-    document.getElementById('oLostSub').textContent = (lang==='et'? search+'% tööajast info otsimisele' : search+'% of time on searching');
-    document.getElementById('oWinSub').textContent  = (lang==='et'? recover+'% sellest tagasi' : recover+'% of it won back');
+    document.getElementById('oLostSub').textContent = (lang==='et'? '≈ '+dec(hoursWeek)+' h inimese kohta nädalas' : '≈ '+dec(hoursWeek)+' h/person per week');
+    document.getElementById('oWinSub').textContent  = (lang==='et'? 'eeldusel '+recover+'% otsimisajast · vabaneva aja väärtus' : 'assuming '+recover+'% of search time · value of freed capacity');
 
     var lostDays=5*search/100, winDays=lostDays*recover/100, cells=document.getElementById('weekBar').children;
     for(var i=0;i<cells.length;i++){ var lf=Math.max(0,Math.min(1,lostDays-i))*100, gf=Math.max(0,Math.min(1,winDays-i))*100;
       cells[i].style.background='linear-gradient(to right,#1E9E6A 0 '+gf+'%,#E5484D '+gf+'% '+lf+'%,#eef1f7 '+lf+'% 100%)'; }
-    document.getElementById('weekBig').innerHTML = (lang==='et'? '≈ <b>'+dec(lostDays)+' päeva</b> töönädalast kulub ebaefektiivsetele protsessidele' : '≈ <b>'+dec(lostDays)+' days</b> of the week go to inefficient processes');
+    document.getElementById('weekBig').innerHTML = (lang==='et'? '≈ <b>'+dec(lostDays)+' päeva</b> töönädalast kulub infohalduse ebaefektiivsetele protsessidele' : '≈ <b>'+dec(lostDays)+' days</b> of the working week go to inefficient information-management processes');
     var hpw=(40*search/100)*(recover/100), hy=Math.round(hpw*emp*46/100)*100;
-    document.getElementById('weekWinLine').innerHTML = (lang==='et'? 'Tagasi ≈ '+dec(hpw)+' h nädalas inimese kohta · ~'+grp(hy)+' h aastas kokku' : 'Back ≈ '+dec(hpw)+' h/person per week · ~'+grp(hy)+' h a year in total');
+    document.getElementById('weekWinLine').innerHTML = (lang==='et'? 'Webware\'iga tagasi õige töö juurde: ≈ <b>'+dec(hpw)+' h</b> nädalas inimese kohta · ~<b>'+grp(hy)+' h</b> aastas kokku' : 'Back to real work with Webware: ≈ <b>'+dec(hpw)+' h</b> per person per week · ~<b>'+grp(hy)+' h</b> a year in total');
 
     var docsMonth=Math.round(emp*1.5), handoffs=Math.round(docsMonth*8/100)*100;
     document.getElementById('pDocs').textContent = '≈ '+grp(docsMonth);
