@@ -3,96 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Webware · Kus raha lekib?</title>
+<title>Webware · Kulukalkulaator</title>
 <style>
   :root { color-scheme: light; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Helvetica Neue',Arial,sans-serif; background:#EEF3FF; color:#0E1A2B;
-         padding:28px 20px 44px; line-height:1.5; }
-  .wrap { max-width:860px; margin:0 auto; }
-  .top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; }
-  .brand { font-size:13px; letter-spacing:.22em; text-transform:uppercase; color:#2D5BFF; font-weight:800; }
-  h1 { font-size:32px; font-weight:800; letter-spacing:-.015em; margin-top:6px; }
-  .lede { font-size:15px; color:#43536b; margin-top:8px; max-width:660px; }
+  body { font-family:'Helvetica Neue',Arial,sans-serif; background:#F4F7FF; color:#0E1A2B;
+         padding:34px 20px 48px; line-height:1.5; }
+  .wrap { max-width:720px; margin:0 auto; }
+  .top { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  .brand { font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:#2D5BFF; font-weight:800; }
   .lang { display:flex; gap:4px; }
   .lang button { border:1px solid #cdd9ee; background:#fff; color:#2a3a50; font-weight:700;
-    border-radius:8px; padding:6px 12px; cursor:pointer; font-size:13px; }
+    border-radius:8px; padding:5px 11px; cursor:pointer; font-size:13px; }
   .lang button.active { background:#2D5BFF; color:#fff; border-color:#2D5BFF; }
-  .card { background:#fff; border:1px solid #e2e9f6; border-radius:16px; padding:22px 24px; margin-top:20px; }
-  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-  .field label { display:block; font-size:14px; font-weight:700; margin-bottom:7px; }
-  .field .hint { display:block; font-weight:400; font-size:12px; color:#7a879b; margin-top:3px; }
-  input[type=number] { width:100%; font-size:20px; font-weight:700; color:#0E1A2B; padding:10px 12px;
-    border:1px solid #cdd9ee; border-radius:10px; background:#fbfcff; }
-  .seg { display:flex; gap:6px; }
+  h1 { font-size:26px; font-weight:800; letter-spacing:-.01em; margin-top:14px; max-width:600px; }
+  /* inputs */
+  .inputs { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px; }
+  .field label { display:block; font-size:12.5px; font-weight:700; color:#5a6b84; margin-bottom:6px; }
+  .field .hint { font-weight:400; color:#9aa7bd; }
+  input[type=number] { width:100%; font-size:19px; font-weight:700; color:#0E1A2B; padding:10px 12px;
+    border:1px solid #cdd9ee; border-radius:10px; background:#fff; }
+  .seg { display:flex; gap:5px; margin-top:0; }
   .seg button { flex:1; border:1px solid #cdd9ee; background:#fff; color:#2a3a50; font-weight:700;
-    padding:9px 6px; border-radius:10px; cursor:pointer; font-size:13.5px; line-height:1.25; }
-  .seg button small { display:block; font-weight:500; font-size:11px; color:#8a97ac; }
+    padding:9px 4px; border-radius:9px; cursor:pointer; font-size:13px; }
   .seg button.active { background:#2D5BFF; color:#fff; border-color:#2D5BFF; }
-  .seg button.active small { color:#cfe0ff; }
-  .fieldfull { margin-top:18px; }
-  /* headline results */
-  .heads { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px; }
-  .head { border-radius:16px; padding:20px 22px; }
-  .head.loss { background:#FFF1F1; border:1px solid #f7cdcd; }
-  .head.win  { background:#2D5BFF; color:#fff; }
-  .head .k { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
-  .head.loss .k { color:#b23b3b; }
-  .head.win .k { color:#cfe0ff; }
-  .head .v { font-size:44px; font-weight:800; letter-spacing:-.02em; line-height:1; margin-top:7px; }
-  .head.loss .v { color:#E5484D; }
-  .head .sub { font-size:12.5px; margin-top:8px; }
-  .head.loss .sub { color:#9a6767; }
-  .head.win .sub { color:#dbe6ff; }
-  /* week strip (time, not money) */
-  .week { background:#fff; border:1px solid #e2e9f6; border-radius:16px; padding:18px 22px; margin-top:14px; }
-  .week .k { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#5a6b84; }
-  .weekbar { display:flex; gap:5px; height:34px; margin-top:12px; }
+  .full { grid-column:1 / -1; }
+  /* headline numbers */
+  .nums { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px; }
+  .num { border-radius:16px; padding:22px 24px; }
+  .num.a { background:#fff; border:1px solid #e2e9f6; }
+  .num.b { background:#2D5BFF; color:#fff; }
+  .num .k { font-size:12.5px; font-weight:700; color:#5a6b84; }
+  .num.b .k { color:#cfe0ff; }
+  .num .v { font-size:46px; font-weight:800; letter-spacing:-.02em; line-height:1; margin-top:8px; color:#0E1A2B; }
+  .num.b .v { color:#fff; }
+  .num .s { font-size:12px; color:#8a97ac; margin-top:8px; }
+  .num.b .s { color:#dbe6ff; }
+  /* explanation wall */
+  details { background:#fff; border:1px solid #e2e9f6; border-radius:12px; margin-top:10px; }
+  summary { cursor:pointer; list-style:none; padding:15px 18px; font-weight:700; font-size:14px;
+    color:#0E1A2B; display:flex; justify-content:space-between; align-items:center; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; color:#2D5BFF; font-size:20px; font-weight:800; line-height:1; }
+  details[open] summary::after { content:"\2013"; }
+  .dbody { padding:2px 18px 20px; font-size:13.5px; color:#3d4d63; }
+  .dbody .line { margin-top:8px; } .dbody .line b { color:#0E1A2B; }
+  /* week */
+  .weekbar { display:flex; gap:5px; height:30px; margin-top:6px; }
   .weekbar span { flex:1; background:#eef1f7; border-radius:6px; }
-  .week .big { font-size:22px; font-weight:800; color:#0E1A2B; margin-top:14px; }
-  .week .big span { color:#E5484D; }
-  .legend { display:flex; gap:18px; flex-wrap:wrap; margin-top:12px; font-size:12.5px; color:#5a6b84; }
-  .legend i.sw { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:middle; margin-right:5px; }
-  .legend .red { background:#E5484D; } .legend .green { background:#1E9E6A; }
-  .playnote { font-size:15px; font-weight:700; color:#0E1A2B; margin-top:22px; }
-  /* math box */
-  .math { background:#fbfcff; border:1px dashed #c7d4ec; border-radius:14px; padding:16px 20px; margin-top:16px; }
-  .math .h { font-size:14px; font-weight:800; color:#2D5BFF; }
-  .math .line { font-size:13.5px; color:#3d4d63; margin-top:9px; }
-  .math .line b { color:#0E1A2B; }
-  /* soft / hidden */
-  .soft { border:1px dashed #c7d4ec; border-radius:14px; padding:16px 20px; margin-top:16px; background:#fff; }
-  .soft .h { font-size:14px; font-weight:800; color:#5a6b84; }
-  .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:11px; }
-  .chip { display:inline-block; border-radius:20px; padding:6px 12px; font-size:13px; font-weight:600; }
-  .chip.human { background:#EEF3FF; border:1px solid #d7e0f2; color:#2a3a50; }
-  .chip.risk { background:#FFF1F1; border:1px solid #f7cdcd; color:#a63a3a; }
-  .soft .note { font-size:12.5px; color:#7a879b; margin-top:11px; }
-  .foot { font-size:12px; color:#7a879b; margin-top:20px; line-height:1.7; }
-  .foot b { color:#43536b; } .foot a { color:#2D5BFF; font-weight:700; text-decoration:none; }
-  .week .winline { font-size:14px; font-weight:700; color:#1E7a4f; margin-top:8px; }
-  .ba { width:100%; border-collapse:collapse; margin-top:12px; }
-  .ba th { text-align:left; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; padding:0 10px 8px; }
-  .ba th.before { color:#a63a3a; } .ba th.after { color:#1E7a4f; }
-  .ba td { padding:9px 10px; font-size:13px; vertical-align:top; border-top:1px solid #eef1f7; line-height:1.4; }
-  .ba td.before { color:#6b7a90; width:48%; }
-  .ba td.after { color:#14663f; width:52%; background:#f2faf6; }
+  .wbig { font-size:16px; font-weight:800; color:#0E1A2B; margin-top:12px; } .wbig b { color:#E5484D; }
+  .wwin { font-size:13px; font-weight:700; color:#1E7a4f; margin-top:6px; }
+  /* process */
+  .pstats { display:grid; grid-template-columns:repeat(3,1fr); margin-top:6px; text-align:center; }
+  .pstats > div { padding:0 8px; } .pstats > div + div { border-left:1px solid #eef1f7; }
+  .pstats b { display:block; font-size:26px; font-weight:800; color:#2D5BFF; line-height:1; }
+  .pstats em { display:block; font-style:normal; font-size:11.5px; color:#5a6b84; margin-top:6px; }
+  .procvis { display:flex; justify-content:center; margin-top:12px; }
+  .fact { background:#EEF3FF; border:1px solid #d7e0f2; border-radius:10px; padding:11px 14px; margin-top:12px;
+    font-size:13px; font-weight:700; color:#2a3a50; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+  .fact a { font-size:11.5px; color:#2D5BFF; text-decoration:none; white-space:nowrap; }
+  /* table */
+  .ba { width:100%; border-collapse:collapse; margin-top:4px; }
+  .ba td { padding:8px 8px; font-size:13px; vertical-align:top; border-top:1px solid #eef1f7; }
+  .ba td.before { color:#6b7a90; width:47%; } .ba td.after { color:#14663f; }
   .ba td.after::before { content:"\2713  "; color:#1E9E6A; font-weight:800; }
-  /* process / multiplier */
-  .proc { background:#fff; border:1px solid #e2e9f6; border-radius:16px; padding:18px 22px; margin-top:14px; }
-  .proc .k { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#5a6b84; }
-  .pstats { display:grid; grid-template-columns:repeat(3,1fr); margin-top:16px; text-align:center; }
-  .pstats > div { padding:0 10px; }
-  .pstats > div + div { border-left:1px solid #eef1f7; }
-  .pstats b { display:block; font-size:30px; font-weight:800; color:#2D5BFF; line-height:1; }
-  .pstats span { display:block; font-size:12.5px; color:#5a6b84; margin-top:7px; }
-  .procvis { display:flex; justify-content:center; margin-top:14px; }
-  .proc .note { font-size:12px; color:#8a97ac; margin-top:8px; }
-  .factcard { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
-    background:#EEF3FF; border:1px solid #d7e0f2; border-radius:12px; padding:13px 16px; margin-top:16px; }
-  .factcard span { font-size:14px; font-weight:700; color:#2a3a50; }
-  .factcard a { font-size:12px; font-weight:700; color:#2D5BFF; text-decoration:none; white-space:nowrap; }
-  @media (max-width:600px){ .row2,.heads{grid-template-columns:1fr;} h1{font-size:25px;} .head .v{font-size:36px;} .ba td,.ba th{font-size:12px;padding:7px 8px;} }
+  .src { font-size:12px; color:#8a97ac; line-height:1.7; } .src a { color:#2D5BFF; font-weight:700; text-decoration:none; }
+  .foot { font-size:11.5px; color:#9aa7bd; margin-top:18px; }
+  @media (max-width:560px){ .inputs,.nums{grid-template-columns:1fr;} .num .v{font-size:38px;} }
 </style>
 </head>
 <body>
@@ -104,265 +81,167 @@
       <button id="btEn" onclick="setLang('en')">EN</button>
     </div>
   </div>
-  <h1 data-et="Kulu, mis jääb tihti nähtamatuks, kuna puudutab protsesse." data-en="A cost that often stays invisible — because it's about processes.">Kulu, mis jääb tihti nähtamatuks, kuna puudutab protsesse.</h1>
-  <p class="lede"
-     data-et="Uuringute põhjal kulub töötajal 20–30% tööajast (kuni päev nädalas) info otsimisele, kinnitamisele või taasloomisele."
-     data-en="Research shows employees spend 20–30% of the week (up to a day) searching for, approving or re-creating information.">
-  </p>
-
-  <p class="playnote" data-et="Mängi oma ettevõtte andmetega, et näha info haldamisega seotud kulu." data-en="Play with your company's numbers to see the cost tied to managing information.">Mängi oma ettevõtte andmetega, et näha info haldamisega seotud kulu.</p>
+  <h1 data-et="Mida kaotatud aeg teie ettevõttes maksab?" data-en="What does lost time cost your company?">Mida kaotatud aeg teie ettevõttes maksab?</h1>
 
   <!-- INPUTS -->
-  <div class="card">
-    <div class="row2">
-      <div class="field">
-        <label data-et="Töötajate arv" data-en="Number of employees">Töötajate arv</label>
-        <input type="number" id="emp" value="400" min="1" step="1">
-      </div>
-      <div class="field">
-        <label><span data-et="Keskmine brutopalk kuus (€)" data-en="Average gross monthly salary (€)">Keskmine brutopalk kuus (€)</span>
-          <span class="hint" data-et="Tööandja maksud (~34%, Eesti) liidetakse automaatselt." data-en="Employer taxes (~34%, Estonia) are added automatically.">+ tööandja maksud (~34%)</span>
-        </label>
-        <input type="number" id="gross" value="2600" min="0" step="50">
-      </div>
+  <div class="inputs">
+    <div class="field">
+      <label data-et="Töötajate arv" data-en="Employees">Töötajate arv</label>
+      <input type="number" id="emp" value="400" min="1" step="1">
     </div>
-
-    <div class="fieldfull field">
-      <label><span data-et="Info otsimisele kuluv aeg" data-en="Time spent searching for information">Info otsimisele kuluv aeg</span>
-        <span class="hint" data-et="Uuringute põhjal: McKinsey ~20%, IDC/Forrester ~30%" data-en="Based on research: McKinsey ~20%, IDC/Forrester ~30%">Uuringute põhjal: McKinsey ~20%, IDC/Forrester ~30%</span>
-      </label>
+    <div class="field">
+      <label><span data-et="Keskmine brutopalk / kuus" data-en="Avg gross salary / month">Keskmine brutopalk / kuus</span> <span class="hint" data-et="(+ tööandja maksud ~34%)" data-en="(+ employer taxes ~34%)">(+ tööandja maksud ~34%)</span></label>
+      <input type="number" id="gross" value="2600" min="0" step="50">
+    </div>
+    <div class="field full">
+      <label data-et="Info otsimisele kuluv aeg (uuringud: 20–30%)" data-en="Time spent searching (research: 20–30%)">Info otsimisele kuluv aeg (uuringud: 20–30%)</label>
       <div class="seg" id="segSearch">
-        <button data-val="20" class="active">20%</button>
-        <button data-val="25">25%</button>
-        <button data-val="30">30%</button>
+        <button data-val="20" class="active">20%</button><button data-val="25">25%</button><button data-val="30">30%</button>
       </div>
     </div>
-
-    <div class="fieldfull field">
-      <label><span data-et="Eeldatav võit parematest protsessidest Webware'iga." data-en="Expected gain from better processes with Webware.">Eeldatav võit parematest protsessidest Webware'iga.</span>
-        <span class="hint" data-et="Eeldus meie tänaste klientide põhjal. Lõpliku numbri saame pilootprojektis." data-en="An assumption based on our current clients. The final number comes from a pilot.">Eeldus meie tänaste klientide põhjal. Lõpliku numbri saame pilootprojektis.</span>
-      </label>
+    <div class="field full">
+      <label data-et="Webware'iga tagasi võidetav (eeldus)" data-en="Reclaimable with Webware (assumption)">Webware'iga tagasi võidetav (eeldus)</label>
       <div class="seg" id="segRecover">
-        <button data-val="5" class="active" data-et="Konservatiivne<small>5% otsimisajast</small>" data-en="Conservative<small>5% of search time</small>">Konservatiivne<small>5% otsimisajast</small></button>
-        <button data-val="15" data-et="Keskmine<small>15%</small>" data-en="Average<small>15%</small>">Keskmine<small>15%</small></button>
-        <button data-val="30" data-et="Optimistlik<small>30%</small>" data-en="Optimistic<small>30%</small>">Optimistlik<small>30%</small></button>
+        <button data-val="5" class="active" data-et="Konservatiivne" data-en="Conservative">Konservatiivne</button>
+        <button data-val="15" data-et="Keskmine" data-en="Average">Keskmine</button>
+        <button data-val="30" data-et="Optimistlik" data-en="Optimistic">Optimistlik</button>
       </div>
     </div>
   </div>
 
   <!-- HEADLINE NUMBERS -->
-  <div class="heads">
-    <div class="head loss">
-      <div class="k" data-et="Tänane rahaline ja ajaline kulu info otsimisele" data-en="Today's money and time spent searching for information">Tänane rahaline ja ajaline kulu info otsimisele</div>
+  <div class="nums">
+    <div class="num a">
+      <div class="k" data-et="Tänane kulu / aastas" data-en="Today's cost / year">Tänane kulu / aastas</div>
       <div class="v" id="oLost">–</div>
-      <div class="sub" id="oLostSub"></div>
+      <div class="s" id="oLostSub"></div>
     </div>
-    <div class="head win">
-      <div class="k" data-et="Rahaline võit infohalduse protsesside parendusest" data-en="The money gain from improving information-management processes">Rahaline võit infohalduse protsesside parendusest</div>
+    <div class="num b">
+      <div class="k" data-et="Rahaline võit / aastas" data-en="Money gain / year">Rahaline võit / aastas</div>
       <div class="v" id="oWin">–</div>
-      <div class="sub" id="oWinSub"></div>
+      <div class="s" id="oWinSub"></div>
     </div>
   </div>
 
-  <!-- WEEK STRIP -->
-  <div class="week">
-    <div class="k" data-et="Teeme visuaalseks: vaatame töönädalat." data-en="Let's make it visual: look at the working week.">Teeme visuaalseks: vaatame töönädalat.</div>
-    <div class="weekbar" id="weekBar">
-      <span></span><span></span><span></span><span></span><span></span>
+  <!-- EXPLANATION WALL -->
+  <details>
+    <summary data-et="Kuidas need numbrid tekivad" data-en="How these numbers are built">Kuidas need numbrid tekivad</summary>
+    <div class="dbody">
+      <div class="line" data-et="<b>Aastane tööjõukulu</b> = töötajate arv × keskmine brutopalk × 12 × 1,34 (koos tööandja maksudega)" data-en="<b>Annual labour cost</b> = employees × average gross salary × 12 × 1.34 (incl. employer taxes)"></div>
+      <div class="line" data-et="<b>Tänane kulu</b> = tööjõukulu × otsimise osakaal" data-en="<b>Today's cost</b> = labour cost × the search share"></div>
+      <div class="line" data-et="<b>Rahaline võit</b> = tänane kulu × parenduse osakaal" data-en="<b>Money gain</b> = today's cost × the improvement share"></div>
     </div>
-    <div class="big" id="weekBig"></div>
-    <div class="winline" id="weekWinLine"></div>
-    <div class="legend">
-      <span><i class="sw red"></i><span data-et="Ebaefektiivsetele protsessidele kuluv aeg" data-en="Time lost to inefficient processes">Ebaefektiivsetele protsessidele kuluv aeg</span></span>
-      <span><i class="sw green"></i><span data-et="Webware'iga tagasi võidetav aeg" data-en="Time reclaimable with Webware">Webware'iga tagasi võidetav aeg</span></span>
-    </div>
-  </div>
+  </details>
 
-  <!-- PROCESS / MULTIPLIER -->
-  <div class="proc">
-    <div class="k" data-et="1 dokument, ca 8 protsessipunkti." data-en="1 document, ~8 process points.">1 dokument, ca 8 protsessipunkti.</div>
-    <div class="note" data-et="Eeldus: ~1,5 dokumenti töötaja kohta kuus, igaüks ~8 puudutust. Muuda oma numbriga." data-en="Assumption: ~1.5 documents per employee per month, each ~8 touches. Adjust for your reality.">Eeldus: ~1,5 dokumenti töötaja kohta kuus, igaüks ~8 puudutust. Muuda oma numbriga.</div>
-    <div class="pstats">
-      <div><b id="pDocs">–</b><span data-et="dokumenti kuus" data-en="documents / month">dokumenti kuus</span></div>
-      <div><b>≈ 8</b><span data-et="protsessipunkti dokumendi kohta" data-en="process points per document">protsessipunkti dokumendi kohta</span></div>
-      <div><b id="pHand">–</b><span data-et="koostoimivat protsessipunkti kuus" data-en="interconnected process points / month">koostoimivat protsessipunkti kuus</span></div>
+  <details>
+    <summary data-et="Töönädal — kui palju aega kaob" data-en="The working week — how much time is lost">Töönädal — kui palju aega kaob</summary>
+    <div class="dbody">
+      <div class="weekbar" id="weekBar"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="wbig" id="weekBig"></div>
+      <div class="wwin" id="weekWinLine"></div>
     </div>
-    <div class="procvis">
-      <svg viewBox="0 0 480 250" width="100%" style="max-width:460px" role="img" aria-label="one document, many roles">
-        <g stroke="#cdd9ee" stroke-width="2">
-          <line x1="230" y1="120" x2="230" y2="54"/>
-          <line x1="230" y1="120" x2="282" y2="79"/>
-          <line x1="230" y1="120" x2="294" y2="135"/>
-          <line x1="230" y1="120" x2="259" y2="180"/>
-          <line x1="230" y1="120" x2="201" y2="180"/>
-          <line x1="230" y1="120" x2="166" y2="135"/>
-          <line x1="230" y1="120" x2="178" y2="79"/>
-        </g>
-        <g fill="#2D5BFF">
-          <circle cx="230" cy="54" r="5"/><circle cx="282" cy="79" r="5"/><circle cx="294" cy="135" r="5"/>
-          <circle cx="259" cy="180" r="5"/><circle cx="201" cy="180" r="5"/><circle cx="166" cy="135" r="5"/><circle cx="178" cy="79" r="5"/>
-        </g>
-        <g font-size="12.5" font-weight="700" fill="#2a3a50">
-          <text x="230" y="40" text-anchor="middle" data-et="Autor" data-en="Author">Autor</text>
-          <text x="292" y="83" text-anchor="start" data-et="Kinnitaja" data-en="Approver">Kinnitaja</text>
-          <text x="305" y="139" text-anchor="start" data-et="Rahandus" data-en="Finance">Rahandus</text>
-          <text x="270" y="197" text-anchor="start" data-et="Väline partner" data-en="External partner">Väline partner</text>
-          <text x="190" y="197" text-anchor="end" data-et="Audiitor" data-en="Auditor">Audiitor</text>
-          <text x="155" y="139" text-anchor="end" data-et="Reeglid" data-en="Rules">Reeglid</text>
-          <text x="168" y="83" text-anchor="end" data-et="Allkirjastaja" data-en="Signer">Allkirjastaja</text>
-        </g>
-        <circle cx="230" cy="120" r="30" fill="#2D5BFF"/>
-        <rect x="220" y="106" width="20" height="27" rx="3" fill="#fff"/>
-        <rect x="224" y="112" width="12" height="2.2" fill="#c7d4ec"/>
-        <rect x="224" y="117" width="12" height="2.2" fill="#c7d4ec"/>
-        <rect x="224" y="122" width="9" height="2.2" fill="#c7d4ec"/>
-      </svg>
+  </details>
+
+  <details>
+    <summary data-et="1 dokument, ca 8 protsessipunkti" data-en="1 document, ~8 process points">1 dokument, ca 8 protsessipunkti</summary>
+    <div class="dbody">
+      <div class="pstats">
+        <div><b id="pDocs">–</b><em data-et="dokumenti kuus" data-en="documents / month">dokumenti kuus</em></div>
+        <div><b>≈ 8</b><em data-et="protsessipunkti dokumendi kohta" data-en="process points per document">protsessipunkti dokumendi kohta</em></div>
+        <div><b id="pHand">–</b><em data-et="koostoimivat protsessipunkti kuus" data-en="interconnected process points / month">koostoimivat protsessipunkti kuus</em></div>
+      </div>
+      <div class="procvis">
+        <svg viewBox="0 0 480 250" width="100%" style="max-width:440px" role="img" aria-label="one document, many roles">
+          <g stroke="#cdd9ee" stroke-width="2">
+            <line x1="230" y1="120" x2="230" y2="54"/><line x1="230" y1="120" x2="282" y2="79"/><line x1="230" y1="120" x2="294" y2="135"/>
+            <line x1="230" y1="120" x2="259" y2="180"/><line x1="230" y1="120" x2="201" y2="180"/><line x1="230" y1="120" x2="166" y2="135"/><line x1="230" y1="120" x2="178" y2="79"/>
+          </g>
+          <g fill="#2D5BFF">
+            <circle cx="230" cy="54" r="5"/><circle cx="282" cy="79" r="5"/><circle cx="294" cy="135" r="5"/>
+            <circle cx="259" cy="180" r="5"/><circle cx="201" cy="180" r="5"/><circle cx="166" cy="135" r="5"/><circle cx="178" cy="79" r="5"/>
+          </g>
+          <g font-size="12.5" font-weight="700" fill="#2a3a50">
+            <text x="230" y="40" text-anchor="middle" data-et="Autor" data-en="Author">Autor</text>
+            <text x="292" y="83" text-anchor="start" data-et="Kinnitaja" data-en="Approver">Kinnitaja</text>
+            <text x="305" y="139" text-anchor="start" data-et="Rahandus" data-en="Finance">Rahandus</text>
+            <text x="270" y="197" text-anchor="start" data-et="Väline partner" data-en="External partner">Väline partner</text>
+            <text x="190" y="197" text-anchor="end" data-et="Audiitor" data-en="Auditor">Audiitor</text>
+            <text x="155" y="139" text-anchor="end" data-et="Reeglid" data-en="Rules">Reeglid</text>
+            <text x="168" y="83" text-anchor="end" data-et="Allkirjastaja" data-en="Signer">Allkirjastaja</text>
+          </g>
+          <circle cx="230" cy="120" r="30" fill="#2D5BFF"/>
+          <rect x="220" y="106" width="20" height="27" rx="3" fill="#fff"/>
+          <rect x="224" y="112" width="12" height="2.2" fill="#c7d4ec"/><rect x="224" y="117" width="12" height="2.2" fill="#c7d4ec"/><rect x="224" y="122" width="9" height="2.2" fill="#c7d4ec"/>
+        </svg>
+      </div>
+      <div class="fact">
+        <span data-et="Üle 80% töötajatest loob dokumendi pigem uuesti, kui otsib olemasolevat." data-en="Over 80% of employees recreate a document rather than search for the existing one.">Üle 80% töötajatest loob dokumendi pigem uuesti, kui otsib olemasolevat.</span>
+        <a href="https://www.armstrongarchives.com/records-management-statistics/" target="_blank" rel="noopener" data-et="allikas ↗" data-en="source ↗">allikas ↗</a>
+      </div>
     </div>
-    <div class="factcard">
-      <span data-et="Üle 80% töötajatest loob dokumendi pigem uuesti, kui otsib olemasolevat." data-en="Over 80% of employees recreate a document rather than search for the existing one.">Üle 80% töötajatest loob dokumendi pigem uuesti, kui otsib olemasolevat.</span>
-      <a href="https://www.armstrongarchives.com/records-management-statistics/" target="_blank" rel="noopener" data-et="allikas ↗" data-en="source ↗">allikas ↗</a>
+  </details>
+
+  <details>
+    <summary data-et="Mida kulunumber ei näita" data-en="What the cost number doesn't show">Mida kulunumber ei näita</summary>
+    <div class="dbody">
+      <table class="ba"><tbody>
+        <tr><td class="before" data-et="Administratiivne stress" data-en="Administrative stress">Administratiivne stress</td><td class="after" data-et="Üks tõde, alati leitav" data-en="One source of truth, always findable">Üks tõde, alati leitav</td></tr>
+        <tr><td class="before" data-et="Tegemata jäänud töö" data-en="Real work left undone">Tegemata jäänud töö</td><td class="after" data-et="Aeg läheb otsustele, mitte otsimisele" data-en="Time goes to decisions, not searching">Aeg läheb otsustele, mitte otsimisele</td></tr>
+        <tr><td class="before" data-et="Vastavus- ja auditirisk" data-en="Compliance &amp; audit risk">Vastavus- ja auditirisk</td><td class="after" data-et="Auditiks valmis sekunditega" data-en="Audit-ready in seconds">Auditiks valmis sekunditega</td></tr>
+        <tr><td class="before" data-et="Andmelekked" data-en="Data leaks">Andmelekked</td><td class="after" data-et="Ligipääs rolli järgi" data-en="Role-based access">Ligipääs rolli järgi</td></tr>
+        <tr><td class="before" data-et="Vale dokumendiversioon" data-en="Wrong document version">Vale dokumendiversioon</td><td class="after" data-et="Alati üks kehtiv versioon" data-en="Always one valid version">Alati üks kehtiv versioon</td></tr>
+      </tbody></table>
     </div>
-  </div>
+  </details>
 
-  <!-- HIDDEN / RISK (before the math) -->
-  <div class="soft">
-    <div class="h" data-et="Kehva infohalduse probleemid, mida kulunumber samuti kohe ei näita, kuid hea süsteem aitab lahendada." data-en="Problems of poor information management the cost number doesn't immediately show either — but a good system solves.">Kehva infohalduse probleemid, mida kulunumber samuti kohe ei näita, kuid hea süsteem aitab lahendada.</div>
-    <table class="ba">
-      <thead><tr>
-        <th class="before" data-et="Täna — kehv infohaldus" data-en="Today — poor information management">Täna — kehv infohaldus</th>
-        <th class="after" data-et="Hea süsteemiga" data-en="With a good system">Hea süsteemiga</th>
-      </tr></thead>
-      <tbody>
-        <tr><td class="before" data-et="Administratiivne stress" data-en="Administrative stress">Administratiivne stress</td><td class="after" data-et="Üks tõde, alati leitav — „kus see on?" kaob ära" data-en="One source of truth, always findable — “where is it?” disappears">Üks tõde, alati leitav — „kus see on?" kaob ära</td></tr>
-        <tr><td class="before" data-et="Mõttetu töö asemel tegemata jäänud töö" data-en="Real work left undone because of busywork">Mõttetu töö asemel tegemata jäänud töö</td><td class="after" data-et="Aeg läheb otsustele, mitte otsimisele" data-en="Time goes to decisions, not searching">Aeg läheb otsustele, mitte otsimisele</td></tr>
-        <tr><td class="before" data-et="Vastavus- ja auditirisk" data-en="Compliance &amp; audit risk">Vastavus- ja auditirisk</td><td class="after" data-et="Auditiks valmis sekunditega, mitte nädalatega" data-en="Audit-ready in seconds, not weeks">Auditiks valmis sekunditega, mitte nädalatega</td></tr>
-        <tr><td class="before" data-et="Andmelekked — tundlik info vales kohas" data-en="Data leaks — sensitive info in the wrong place">Andmelekked — tundlik info vales kohas</td><td class="after" data-et="Ligipääs rolli järgi — tundlik info ei rända välja" data-en="Role-based access — sensitive info doesn't wander off">Ligipääs rolli järgi — tundlik info ei rända välja</td></tr>
-        <tr><td class="before" data-et="Otsused vale dokumendiversiooni põhjal" data-en="Decisions based on the wrong document version">Otsused vale dokumendiversiooni põhjal</td><td class="after" data-et="Alati üks kehtiv versioon, tervikliku ajalooga" data-en="Always one valid version, with full history">Alati üks kehtiv versioon, tervikliku ajalooga</td></tr>
-      </tbody>
-    </table>
-    <div class="note" data-et="Neid on raske eurodesse panna — aga mõõtmata jätmine ei võta kulu ära." data-en="Hard to put in euros — but unmeasured isn't unpaid.">Neid on raske eurodesse panna — aga mõõtmata jätmine ei võta kulu ära.</div>
-  </div>
+  <details>
+    <summary data-et="Allikad ja eeldused" data-en="Sources & assumptions">Allikad ja eeldused</summary>
+    <div class="dbody src">
+      <span data-et="Otsimisaeg 20–30%: McKinsey, IDC, Forrester. Dokumendieeldus: ~1,5 dokumenti töötaja kohta kuus, ~8 protsessipunkti. Numbrid on suunanäitajad — kontrolli oma andmetega." data-en="Search time 20–30%: McKinsey, IDC, Forrester. Document assumption: ~1.5 documents per employee per month, ~8 process points. Figures are directional — verify with your own data."></span><br>
+      <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy" target="_blank" rel="noopener">McKinsey ↗</a> ·
+      <a href="https://www.cdpinstitute.org/news/knowledge-workers-lose-30-of-time-looking-for-data-forrester-study/" target="_blank" rel="noopener">Forrester ↗</a>
+    </div>
+  </details>
 
-  <!-- THE MATH (general formulas) -->
-  <div class="math">
-    <div class="h" data-et="Kuidas need numbrid tekivad" data-en="How these numbers are built">Kuidas need numbrid tekivad</div>
-    <div class="line" data-et="<b>Aastane tööjõukulu</b> = töötajate arv × keskmine brutopalk × 12 × 1,34 (koos tööandja maksudega)" data-en="<b>Annual labour cost</b> = employees × average gross salary × 12 × 1.34 (incl. employer taxes)"></div>
-    <div class="line" data-et="<b>Info otsimisele kuluv aeg</b> = 40 h nädalas × otsimise osakaal" data-en="<b>Search time</b> = 40 h/week × the search share"></div>
-    <div class="line" data-et="<b>Tänane kulu</b> = aastane tööjõukulu × otsimise osakaal" data-en="<b>Today's cost</b> = annual labour cost × the search share"></div>
-    <div class="line" data-et="<b>Rahaline võit</b> = tänane kulu × parenduse osakaal" data-en="<b>Money gain</b> = today's cost × the improvement share"></div>
-  </div>
-
-  <p class="foot">
-    <span data-et="Numbrid on suunanäitajad, mitte teie ettevõtte mõõdetud tulemus. Kontrolli ja asenda oma andmetega." data-en="These figures are directional, not your company's measured result. Verify and replace with your own data."></span><br>
-    <b data-et="Loe lähemalt:" data-en="Read more:">Loe lähemalt:</b>
-    <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy" target="_blank" rel="noopener">McKinsey (2012) &#8599;</a> &middot;
-    <a href="https://www.cdpinstitute.org/news/knowledge-workers-lose-30-of-time-looking-for-data-forrester-study/" target="_blank" rel="noopener">Forrester &#8599;</a> &middot;
-    <a href="https://www.armstrongarchives.com/records-management-statistics/" target="_blank" rel="noopener" data-et="dokumendistatistika &#8599;" data-en="document statistics &#8599;">dokumendistatistika &#8599;</a><br>
-    <b data-et="Näidisarvutus" data-en="Illustrative model">Näidisarvutus</b>
-    <span data-et=" — tagasivõidetav osa on eeldus, mille tegelik suurus selgub pilootprojektiga." data-en=" — the reclaimable share is an assumption; its real size is confirmed by a pilot."></span>
-  </p>
+  <p class="foot" data-et="Näidisarvutus — tagasivõidetav osa on eeldus, mille tegelik suurus selgub pilootprojektis." data-en="Illustrative model — the reclaimable share is an assumption; its real size is confirmed by a pilot.">Näidisarvutus — tagasivõidetav osa on eeldus, mille tegelik suurus selgub pilootprojektis.</p>
 </div>
 
 <script>
-  var lang='et';
-  var MULT=1.338; // Estonia: social tax 33% + unemployment 0.8%
-  var search=20, recover=5;
-
+  var lang='et', MULT=1.338, search=20, recover=5;
   function grp(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
-  function eur(n){
-    if (Math.abs(n) >= 1e6){ var m=(n/1e6).toFixed(1).replace('.', lang==='et'?',':'.'); return lang==='et' ? ('€ '+m+' mln') : ('€'+m+'M'); }
-    return '€ ' + grp(Math.round(n/1000)*1000);
-  }
-  function eurExact(n){ return '€ ' + grp(n); }
+  function eur(n){ if(Math.abs(n)>=1e6){var m=(n/1e6).toFixed(1).replace('.',lang==='et'?',':'.');return lang==='et'?('€ '+m+' mln'):('€'+m+'M');} return '€ '+grp(Math.round(n/1000)*1000); }
   function num(id){ var v=parseFloat(document.getElementById(id).value); return isNaN(v)?0:v; }
-  function dec(n){ return n.toFixed(1).replace('.', lang==='et'?',':'.'); }
+  function dec(n){ return n.toFixed(1).replace('.',lang==='et'?',':'.'); }
 
   function calc(){
     var emp=num('emp'), gross=num('gross');
-    var labor = emp*gross*12*MULT;
-    var lost  = labor*search/100;
-    var win   = lost*recover/100;
-    var hoursWeek = 40*search/100;
-
+    var labor=emp*gross*12*MULT, lost=labor*search/100, win=lost*recover/100;
     document.getElementById('oLost').textContent = eur(lost);
     document.getElementById('oWin').textContent  = eur(win);
-    document.getElementById('oLostSub').textContent = (lang==='et'
-      ? '≈ '+dec(hoursWeek)+' h inimese kohta nädalas' : '≈ '+dec(hoursWeek)+' h/person per week');
-    document.getElementById('oWinSub').textContent = (lang==='et'
-      ? 'eeldusel '+recover+'% otsimisajast · vabaneva aja väärtus' : 'assuming '+recover+'% of search time · value of freed capacity');
+    document.getElementById('oLostSub').textContent = (lang==='et'? search+'% tööajast info otsimisele' : search+'% of time on searching');
+    document.getElementById('oWinSub').textContent  = (lang==='et'? recover+'% sellest tagasi' : recover+'% of it won back');
 
-    // week strip: fill per day cell so days read clearly (red = lost, green = reclaimable slice)
-    var lostDays = 5*search/100;
-    var winDays  = lostDays*recover/100;
-    var cells = document.getElementById('weekBar').children;
-    for (var i=0;i<cells.length;i++){
-      var lf = Math.max(0, Math.min(1, lostDays - i))*100;
-      var gf = Math.max(0, Math.min(1, winDays  - i))*100;
-      cells[i].style.background =
-        'linear-gradient(to right, #1E9E6A 0 '+gf+'%, #E5484D '+gf+'% '+lf+'%, #eef1f7 '+lf+'% 100%)';
-    }
-    document.getElementById('weekBig').innerHTML = (lang==='et'
-      ? '≈ <span>'+dec(lostDays)+' päeva</span> töönädalast kulub infohalduse ebaefektiivsetele protsessidele'
-      : '≈ <span>'+dec(lostDays)+' days</span> of the working week go to inefficient information-management processes');
-    // reclaimable time, as a concrete number
-    var hpw = (40*search/100)*(recover/100);        // hours per person per week
-    var hy  = Math.round(hpw*emp*46/100)*100;        // company hours per year (~46 working weeks)
-    document.getElementById('weekWinLine').innerHTML = (lang==='et'
-      ? 'Webware\'iga tagasi õige töö juurde: ≈ <b>'+dec(hpw)+' h</b> nädalas inimese kohta · ~<b>'+grp(hy)+' h</b> aastas kokku'
-      : 'Back to real work with Webware: ≈ <b>'+dec(hpw)+' h</b> per person per week · ~<b>'+grp(hy)+' h</b> a year in total');
+    var lostDays=5*search/100, winDays=lostDays*recover/100, cells=document.getElementById('weekBar').children;
+    for(var i=0;i<cells.length;i++){ var lf=Math.max(0,Math.min(1,lostDays-i))*100, gf=Math.max(0,Math.min(1,winDays-i))*100;
+      cells[i].style.background='linear-gradient(to right,#1E9E6A 0 '+gf+'%,#E5484D '+gf+'% '+lf+'%,#eef1f7 '+lf+'% 100%)'; }
+    document.getElementById('weekBig').innerHTML = (lang==='et'? '≈ <b>'+dec(lostDays)+' päeva</b> töönädalast kulub ebaefektiivsetele protsessidele' : '≈ <b>'+dec(lostDays)+' days</b> of the week go to inefficient processes');
+    var hpw=(40*search/100)*(recover/100), hy=Math.round(hpw*emp*46/100)*100;
+    document.getElementById('weekWinLine').innerHTML = (lang==='et'? 'Tagasi ≈ '+dec(hpw)+' h nädalas inimese kohta · ~'+grp(hy)+' h aastas kokku' : 'Back ≈ '+dec(hpw)+' h/person per week · ~'+grp(hy)+' h a year in total');
 
-    // process multiplier: one document touches many
-    var docsMonth = Math.round(emp*1.5);
-    var handoffs  = Math.round(docsMonth*8/100)*100;
+    var docsMonth=Math.round(emp*1.5), handoffs=Math.round(docsMonth*8/100)*100;
     document.getElementById('pDocs').textContent = '≈ '+grp(docsMonth);
     document.getElementById('pHand').textContent = '≈ '+grp(handoffs);
 
-    try { localStorage.setItem('ww_calc', JSON.stringify({emp:emp,gross:gross,search:search,recover:recover,lang:lang})); } catch(e){}
+    try { localStorage.setItem('ww_clean', JSON.stringify({emp:emp,gross:gross,search:search,recover:recover,lang:lang})); } catch(e){}
   }
-
-  function wireSeg(id, setter){
-    var box=document.getElementById(id);
-    box.querySelectorAll('button').forEach(function(b){
-      b.addEventListener('click', function(){
-        box.querySelectorAll('button').forEach(function(x){x.classList.remove('active');});
-        b.classList.add('active');
-        setter(parseFloat(b.getAttribute('data-val')));
-        calc();
-      });
-    });
-  }
-
-  function setActiveByVal(id, val){
-    var box=document.getElementById(id);
-    box.querySelectorAll('button').forEach(function(b){
-      b.classList.toggle('active', parseFloat(b.getAttribute('data-val'))===val);
-    });
-  }
-
-  function setLang(l){
-    lang=l;
-    document.getElementById('btEt').classList.toggle('active', l==='et');
-    document.getElementById('btEn').classList.toggle('active', l==='en');
-    document.documentElement.lang=l;
-    document.querySelectorAll('[data-et]').forEach(function(el){
-      el.innerHTML = el.getAttribute('data-'+l);   // innerHTML to keep <small> in seg buttons
-    });
-    calc();
-  }
-
-  // restore
-  try {
-    var s=JSON.parse(localStorage.getItem('ww_calc'));
-    if(s){ if(s.emp)document.getElementById('emp').value=s.emp; if(s.gross)document.getElementById('gross').value=s.gross;
-      if(s.search){search=s.search; setActiveByVal('segSearch',search);}
-      if(s.recover){recover=s.recover; setActiveByVal('segRecover',recover);}
-      if(s.lang)lang=s.lang; }
-  } catch(e){}
-
-  document.getElementById('emp').addEventListener('input', calc);
-  document.getElementById('gross').addEventListener('input', calc);
-  wireSeg('segSearch', function(v){ search=v; });
-  wireSeg('segRecover', function(v){ recover=v; });
+  function wireSeg(id,setter){ var b=document.getElementById(id); b.querySelectorAll('button').forEach(function(x){ x.addEventListener('click',function(){ b.querySelectorAll('button').forEach(function(y){y.classList.remove('active');}); x.classList.add('active'); setter(parseFloat(x.getAttribute('data-val'))); calc(); }); }); }
+  function setActive(id,val){ document.getElementById(id).querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', parseFloat(b.getAttribute('data-val'))===val); }); }
+  function setLang(l){ lang=l; document.getElementById('btEt').classList.toggle('active',l==='et'); document.getElementById('btEn').classList.toggle('active',l==='en'); document.documentElement.lang=l;
+    document.querySelectorAll('[data-et]').forEach(function(el){ el.innerHTML=el.getAttribute('data-'+l); }); calc(); }
+  try { var s=JSON.parse(localStorage.getItem('ww_clean')); if(s){ if(s.emp)document.getElementById('emp').value=s.emp; if(s.gross)document.getElementById('gross').value=s.gross; if(s.search){search=s.search;setActive('segSearch',search);} if(s.recover){recover=s.recover;setActive('segRecover',recover);} if(s.lang)lang=s.lang; } } catch(e){}
+  document.getElementById('emp').addEventListener('input',calc);
+  document.getElementById('gross').addEventListener('input',calc);
+  wireSeg('segSearch',function(v){search=v;}); wireSeg('segRecover',function(v){recover=v;});
   setLang(lang);
 </script>
 </body>

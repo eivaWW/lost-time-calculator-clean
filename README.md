@@ -1,41 +1,22 @@
-# Webware — Lost-time cost calculator
+# Webware — Lost-time calculator (clean / minimal variant)
 
-A single, self-contained page (`index.html`). No build step, no dependencies. ET/EN toggle. Grounded in McKinsey's ~20%-of-the-workweek benchmark; figures are illustrative.
+The **minimal** sibling of `lost-time-calculator`. Same inputs, same maths, same honesty — but numbers-first: the two euro figures are front and centre, and everything else (the working-week view, the "1 document → process points" visual, the before/after table, the sources) sits behind click-to-open rows. Built for a C-level glance.
 
-## Share it — three ways, easiest first
+Single self-contained `index.html`, no build step, ET/EN toggle.
 
-1. **Just send the file (internal / quick).** Send `index.html` to a colleague — they double-click and it opens in any browser. It's fully self-contained.
-2. **Public link (best for prospects).** Deploy to Vercel (below) → get a URL like `lost-time-calculator.vercel.app` you can paste into an email.
-3. **Embed on the website.** Once it's on Vercel, drop it into a page with an `<iframe src="https://…vercel.app">`.
+## Why two versions
+This exists to A/B against the richer `lost-time-calculator`:
+- **Rich version** — tells the whole story on one page (more scrolling, more to read, more persuasive in a guided demo).
+- **Clean version (this)** — answer in 3 seconds, detail on demand (better for sending a link to a busy executive).
 
-## Deploy: GitHub → Vercel
+## Share / deploy — GitHub → Vercel (separate project)
+Deploy this as its **own** Vercel project so both live side by side.
+1. github.com → **New repository** → name e.g. `lost-time-calculator-clean` → Create.
+2. **Add file → Upload files** → drag `index.html` (and this `README.md`) → Commit.
+   - Or terminal: `rm -f .git/*.lock .git/objects/*.lock` then `git remote add origin https://github.com/<you>/lost-time-calculator-clean.git` → `git push -u origin main`.
+3. vercel.com → **Add New → Project** → import the repo → **Deploy**. You'll get a second URL to compare against the rich one.
 
-You have both accounts. This folder is already a git repo with one commit, so you only push and import.
-
-### Option A — dashboard, no terminal
-1. On **github.com** → *New repository* → name it e.g. `lost-time-calculator` → *Create*.
-2. *Add file → Upload files* → drag in `index.html` (and this `README.md`) → *Commit*.
-3. On **vercel.com** → *Add New → Project* → *Import* that repo → *Deploy*. No settings needed — it's a static site.
-4. Vercel returns a public URL. That's your shareable link.
-
-### Option B — terminal (this folder is ready)
-```bash
-# from this folder
-rm -f .git/*.lock .git/objects/*.lock   # one-time: clears leftover setup locks
-git remote add origin https://github.com/<your-username>/lost-time-calculator.git
-git push -u origin main
-
-npx vercel          # log in, accept defaults → preview URL
-npx vercel --prod   # promote to the production URL you share
-```
-
-## Update it later
-Edit `index.html`, then commit + push (or re-upload the file). Vercel redeploys automatically.
-
-## Custom domain (optional)
-Vercel → Project → *Settings → Domains* → add e.g. `kalkulaator.webware.eu` (add the DNS record Vercel shows).
-
-## Honesty notes (keep these true)
-- McKinsey's ~20% / ~1.8 h/day is an **external benchmark** — verify before quoting in a proposal.
-- The euro figures are an **illustrative model**, not a measured client result.
-- Real recoverable time is only known by measuring (a before/after pilot).
+## Honesty notes (same as the rich version)
+- Search-time 20–30%: McKinsey / IDC / Forrester — external, verify before a proposal.
+- Euro figures and the reclaimable share are an **illustrative model**, confirmed by a pilot.
+- Employer-tax multiplier (~1.34) is Estonia-specific.
