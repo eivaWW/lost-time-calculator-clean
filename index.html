@@ -18,8 +18,9 @@
   .lang button.active { background:#2D5BFF; color:#fff; border-color:#2D5BFF; }
   h1 { font-size:27px; font-weight:800; letter-spacing:-.01em; margin-top:16px; max-width:620px; line-height:1.2; }
   /* inputs */
-  .inputs { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:26px; }
+  .inputs { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:28px; }
   .field label { display:block; font-size:13px; font-weight:700; color:#5a6b84; margin-bottom:8px; }
+  .inputs .field > label { min-height:40px; }
   .field .hint { display:block; font-weight:400; font-size:11.5px; color:#9aa7bd; margin-top:2px; }
   input[type=number] { width:100%; font-size:19px; font-weight:700; color:#0E1A2B; padding:11px 12px;
     border:1px solid #cdd9ee; border-radius:10px; background:#fff; }
@@ -31,7 +32,7 @@
   .seg button.active small { color:#cfe0ff; }
   .full { grid-column:1 / -1; }
   /* headline numbers */
-  .nums { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:26px; }
+  .nums { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:30px; }
   .num { border-radius:16px; padding:24px 24px; }
   .num.a { background:#fff; border:1px solid #e2e9f6; }
   .num.b { background:#2D5BFF; color:#fff; }
@@ -39,11 +40,12 @@
   .num.b .k { color:#cfe0ff; }
   .num .v { font-size:46px; font-weight:800; letter-spacing:-.02em; line-height:1; margin-top:12px; color:#E5484D; }
   .num.b .v { color:#fff; }
+  .num .per { font-size:20px; font-weight:700; opacity:.6; }
   .num .s { font-size:12px; color:#8a97ac; margin-top:12px; }
   .num.b .s { color:#dbe6ff; }
   /* explanation wall */
-  .wall { margin-top:26px; }
-  details { background:#fff; border:1px solid #e2e9f6; border-radius:12px; margin-top:12px; }
+  .wall { margin-top:30px; }
+  details { background:#fff; border:1px solid #e2e9f6; border-radius:12px; margin-top:14px; }
   summary { cursor:pointer; list-style:none; padding:17px 20px; font-weight:700; font-size:14.5px;
     color:#0E1A2B; display:flex; justify-content:space-between; align-items:center; gap:14px; }
   summary::-webkit-details-marker { display:none; }
@@ -64,7 +66,7 @@
   .pstats > div { padding:0 10px; } .pstats > div + div { border-left:1px solid #eef1f7; }
   .pstats b { display:block; font-size:28px; font-weight:800; color:#2D5BFF; line-height:1; }
   .pstats em { display:block; font-style:normal; font-size:11.5px; color:#5a6b84; margin-top:8px; }
-  .pnote { font-size:12px; color:#8a97ac; margin-top:16px; }
+  .procvis { display:flex; justify-content:center; margin-top:18px; }
   .fact { background:#EEF3FF; border:1px solid #d7e0f2; border-radius:10px; padding:12px 15px; margin-top:16px;
     font-size:13.5px; font-weight:700; color:#2a3a50; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
   .fact a { font-size:11.5px; color:#2D5BFF; text-decoration:none; white-space:nowrap; font-weight:700; }
@@ -106,11 +108,11 @@
       </div>
     </div>
     <div class="field full">
-      <label><span data-et="Eeldatav võit parematest protsessidest Webware'iga." data-en="Expected gain from better processes with Webware.">Eeldatav võit parematest protsessidest Webware'iga.</span><span class="hint" data-et="Eeldus meie tänaste klientide põhjal. Lõpliku numbri saame pilootprojektis." data-en="An assumption based on our current clients. The final number comes from a pilot.">Eeldus meie tänaste klientide põhjal. Lõpliku numbri saame pilootprojektis.</span></label>
+      <label><span data-et="Aja tagasivõit parematest protsessidest" data-en="Time won back from better processes">Aja tagasivõit parematest protsessidest</span><span class="hint" data-et="Allikas: tänased kliendid, kes Webware'i kasutanud >1 aasta." data-en="Source: current clients who have used Webware >1 year.">Allikas: tänased kliendid, kes Webware'i kasutanud >1 aasta.</span></label>
       <div class="seg" id="segRecover">
-        <button data-val="5" class="active" data-et="Konservatiivne<small>5% otsimisajast</small>" data-en="Conservative<small>5% of search time</small>">Konservatiivne<small>5% otsimisajast</small></button>
-        <button data-val="15" data-et="Keskmine<small>15%</small>" data-en="Average<small>15%</small>">Keskmine<small>15%</small></button>
-        <button data-val="30" data-et="Optimistlik<small>30%</small>" data-en="Optimistic<small>30%</small>">Optimistlik<small>30%</small></button>
+        <button data-val="5" class="active" data-et="Konservatiivne<small>alla 100 inimese</small>" data-en="Conservative<small>under 100 people</small>">Konservatiivne<small>alla 100 inimese</small></button>
+        <button data-val="15" data-et="Keskmine<small>alla 500 inimese</small>" data-en="Average<small>under 500 people</small>">Keskmine<small>alla 500 inimese</small></button>
+        <button data-val="30" data-et="Optimistlik<small>500+ inimest</small>" data-en="Optimistic<small>500+ people</small>">Optimistlik<small>500+ inimest</small></button>
       </div>
     </div>
   </div>
@@ -145,14 +147,38 @@
     </details>
 
     <details>
-      <summary data-et="1 dokument, ca 8 protsessipunkti" data-en="1 document, ~8 process points">1 dokument, ca 8 protsessipunkti</summary>
+      <summary data-et="1 dokument = ca 8 protsessi ja kaasatud inimest." data-en="1 document = ~8 processes and people involved.">1 dokument = ca 8 protsessi ja kaasatud inimest.</summary>
       <div class="dbody">
         <div class="pstats">
-          <div><b id="pDocs">–</b><em data-et="dokumenti kuus" data-en="documents / month">dokumenti kuus</em></div>
-          <div><b>≈ 8</b><em data-et="protsessipunkti dokumendi kohta" data-en="process points per document">protsessipunkti dokumendi kohta</em></div>
-          <div><b id="pHand">–</b><em data-et="koostoimivat protsessipunkti kuus" data-en="interconnected process points / month">koostoimivat protsessipunkti kuus</em></div>
+          <div><b id="pDocs">–</b><em data-et="dokumenti kuus (ca 1,5 töötaja kohta)" data-en="documents / month (~1.5 per employee)">dokumenti kuus (ca 1,5 töötaja kohta)</em></div>
+          <div><b>~ 8</b><em data-et="kolleegi / osapoolt dokumendiga töötamas" data-en="colleagues / parties working with the document">kolleegi / osapoolt dokumendiga töötamas</em></div>
+          <div><b id="pHand">–</b><em data-et="tegevust kuus dokumentidega" data-en="actions / month with documents">tegevust kuus dokumentidega</em></div>
         </div>
-        <div class="pnote" data-et="Eeldus: ~1,5 dokumenti töötaja kohta kuus, igaüks ~8 puudutust. Muuda oma numbriga." data-en="Assumption: ~1.5 documents per employee per month, each ~8 touches. Adjust for your reality.">Eeldus: ~1,5 dokumenti töötaja kohta kuus, igaüks ~8 puudutust. Muuda oma numbriga.</div>
+        <div class="procvis">
+          <svg viewBox="0 0 480 250" width="100%" style="max-width:440px" role="img" aria-label="one document, many parties">
+            <circle cx="230" cy="120" r="92" fill="none" stroke="#eef1f7" stroke-width="1.5"/>
+            <g stroke="#cdd9ee" stroke-width="2" stroke-linecap="round">
+              <line x1="230" y1="120" x2="230" y2="54"/><line x1="230" y1="120" x2="282" y2="79"/><line x1="230" y1="120" x2="294" y2="135"/>
+              <line x1="230" y1="120" x2="259" y2="180"/><line x1="230" y1="120" x2="201" y2="180"/><line x1="230" y1="120" x2="166" y2="135"/><line x1="230" y1="120" x2="178" y2="79"/>
+            </g>
+            <g fill="#fff" stroke="#2D5BFF" stroke-width="2">
+              <circle cx="230" cy="54" r="7"/><circle cx="282" cy="79" r="7"/><circle cx="294" cy="135" r="7"/>
+              <circle cx="259" cy="180" r="7"/><circle cx="201" cy="180" r="7"/><circle cx="166" cy="135" r="7"/><circle cx="178" cy="79" r="7"/>
+            </g>
+            <g font-size="12.5" font-weight="700" fill="#2a3a50">
+              <text x="230" y="38" text-anchor="middle" data-et="Autor" data-en="Author">Autor</text>
+              <text x="294" y="82" text-anchor="start" data-et="Kinnitaja" data-en="Approver">Kinnitaja</text>
+              <text x="307" y="139" text-anchor="start" data-et="Rahandus" data-en="Finance">Rahandus</text>
+              <text x="272" y="197" text-anchor="start" data-et="Väline partner" data-en="External partner">Väline partner</text>
+              <text x="188" y="197" text-anchor="end" data-et="Audiitor" data-en="Auditor">Audiitor</text>
+              <text x="153" y="139" text-anchor="end" data-et="Reeglid" data-en="Rules">Reeglid</text>
+              <text x="166" y="82" text-anchor="end" data-et="Allkirjastaja" data-en="Signer">Allkirjastaja</text>
+            </g>
+            <rect x="209" y="99" width="42" height="42" rx="9" fill="#2D5BFF"/>
+            <rect x="219" y="108" width="22" height="26" rx="3" fill="#fff"/>
+            <rect x="223" y="114" width="14" height="2.3" fill="#c7d4ec"/><rect x="223" y="119" width="14" height="2.3" fill="#c7d4ec"/><rect x="223" y="124" width="10" height="2.3" fill="#c7d4ec"/>
+          </svg>
+        </div>
         <div class="fact">
           <span data-et="Üle 80% töötajatest loob dokumendi pigem uuesti, kui otsib olemasolevat." data-en="Over 80% of employees recreate a document rather than search for the existing one.">Üle 80% töötajatest loob dokumendi pigem uuesti, kui otsib olemasolevat.</span>
           <a href="https://www.armstrongarchives.com/records-management-statistics/" target="_blank" rel="noopener" data-et="allikas ↗" data-en="source ↗">allikas ↗</a>
@@ -206,8 +232,9 @@
   function calc(){
     var emp=num('emp'), gross=num('gross');
     var labor=emp*gross*12*MULT, lost=labor*search/100, win=lost*recover/100, hoursWeek=40*search/100;
-    document.getElementById('oLost').textContent = eur(lost);
-    document.getElementById('oWin').textContent  = eur(win);
+    var per = (lang==='et'?' / aastas':' / year');
+    document.getElementById('oLost').innerHTML = eur(lost)+'<span class="per">'+per+'</span>';
+    document.getElementById('oWin').innerHTML  = eur(win)+'<span class="per">'+per+'</span>';
     document.getElementById('oLostSub').textContent = (lang==='et'? '≈ '+dec(hoursWeek)+' h inimese kohta nädalas' : '≈ '+dec(hoursWeek)+' h/person per week');
     document.getElementById('oWinSub').textContent  = (lang==='et'? 'eeldusel '+recover+'% otsimisajast · vabaneva aja väärtus' : 'assuming '+recover+'% of search time · value of freed capacity');
 
@@ -219,8 +246,8 @@
     document.getElementById('weekWinLine').innerHTML = (lang==='et'? 'Webware\'iga tagasi õige töö juurde: ≈ <b>'+dec(hpw)+' h</b> nädalas inimese kohta · ~<b>'+grp(hy)+' h</b> aastas kokku' : 'Back to real work with Webware: ≈ <b>'+dec(hpw)+' h</b> per person per week · ~<b>'+grp(hy)+' h</b> a year in total');
 
     var docsMonth=Math.round(emp*1.5), handoffs=Math.round(docsMonth*8/100)*100;
-    document.getElementById('pDocs').textContent = '≈ '+grp(docsMonth);
-    document.getElementById('pHand').textContent = '≈ '+grp(handoffs);
+    document.getElementById('pDocs').textContent = '~ '+grp(docsMonth);
+    document.getElementById('pHand').textContent = '~ '+grp(handoffs);
 
     try { localStorage.setItem('ww_clean', JSON.stringify({emp:emp,gross:gross,search:search,recover:recover,lang:lang})); } catch(e){}
   }
